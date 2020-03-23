@@ -1,0 +1,23 @@
+{
+    "name": "megaads/laravel-multilanguage",
+    "description": "Generate laravel language file and provide tool for edit it.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Megaads",
+            "email": "info@megaads.vn"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.4"
+    },
+    "autoload": {
+        "classmap": [
+            "src"
+        ],
+        "psr-4": {
+            "Megaads\\Multilanguage\\": "src/"
+        }
+    }
+}
