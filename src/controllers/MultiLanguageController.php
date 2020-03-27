@@ -27,7 +27,7 @@ class MultiLanguageController extends BaseController
             fclose($fp);
             return response()->json(['status' => 'successful', 'data' => $langValue]);
         }
-        return view('multi-language.lang-editor')->with(compact('objectContent'));
+        return view('multi-language::lang-editor')->with(compact('objectContent'));
     }
 
     public function deleteItem() {

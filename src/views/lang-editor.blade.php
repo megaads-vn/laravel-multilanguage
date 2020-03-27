@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.full.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="{{ asset('vendor/multi-language/config.js?' }}" type="text/javascript"></script>
+    <script src="{{ asset('vendor/multi-language/config.js') }}" type="text/javascript"></script>
     <style>
         .clickable,
         .clickedit {
