@@ -9,8 +9,6 @@
 namespace Megaads\LaravelMultiLanguage\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class GenerateLanguage extends Command
 {
