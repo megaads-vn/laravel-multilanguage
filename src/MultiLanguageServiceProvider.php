@@ -21,7 +21,7 @@ class MultiLanguageServiceProvider extends ServiceProvider {
     }
 
     public function register() {
-
+        $this->commands('command.generate.lang');
     }
 
     private function checkFrameWork() {
