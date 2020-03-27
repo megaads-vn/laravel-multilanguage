@@ -46,7 +46,7 @@ class GenerateLanguage extends Command
     public function handle()
     {
         $fileName = config('app.locale') .'.json';
-        $options = $this->options();
+        $options = $this->option();
         if (array_key_exists('output', $options) && $options['output'] != '') {
             $fileName = $options['output'] . '.json';
         }

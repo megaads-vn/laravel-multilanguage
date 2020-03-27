@@ -1,7 +1,7 @@
 <?php 
 namespace Megaads\Multilanguage;
 
-use Console\InstallCommand;
+use Megaads\LaravelMultiLanguage\Console\GenerateLanguage;
 use Illuminate\Support\ServiceProvider;
 
 class MultiLanguageServiceProvider extends ServiceProvider {
@@ -21,6 +21,9 @@ class MultiLanguageServiceProvider extends ServiceProvider {
     }
 
     public function register() {
+        $this->app->singleton('command.generate.lang', function($app) {
+            return new GenerateLanguage();
+        });
         $this->commands('command.generate.lang');
     }
 
