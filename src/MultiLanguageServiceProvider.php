@@ -1,9 +1,10 @@
 <?php 
 namespace Megaads\Multilanguage;
 
+use Console\InstallCommand;
 use Illuminate\Support\ServiceProvider;
 
-class MultilanguageServiceProvider extends ServiceProvider {
+class MultiLanguageServiceProvider extends ServiceProvider {
 
     public function boot()
     {
@@ -19,7 +20,9 @@ class MultilanguageServiceProvider extends ServiceProvider {
         }
     }
 
-    public function register() {}
+    public function register() {
+
+    }
 
     private function checkFrameWork() {
         $findFrameWork = ['laravel/framework','laravel/lumen-framework'];
