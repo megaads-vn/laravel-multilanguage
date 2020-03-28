@@ -6,8 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class MultiLanguageServiceProvider extends ServiceProvider {
 
-    public function boot()
+    public function boot(\Illuminate\Routing\Router $router)
     {
+        $router->middleware('LangAuth', 'Megaads\Multilanguage\Middleware\LangAuthenticate');
         $framework = $this->checkFrameWork();
         if ($framework && $framework['key'] == 'laravel/framework' && $framework['version'] >= 52 ) {
             include __DIR__ . '/routes.php';
