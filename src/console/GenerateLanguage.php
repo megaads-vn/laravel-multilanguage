@@ -6,7 +6,7 @@
  * Time: 2:58 PM
  */
 
-namespace Megaads\LaravelMultiLanguage\Console;
+namespace Megaads\MultiLanguage\Console;
 
 use Illuminate\Console\Command;
 

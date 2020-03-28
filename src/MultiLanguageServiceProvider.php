@@ -1,7 +1,7 @@
 <?php 
 namespace Megaads\Multilanguage;
 
-use Megaads\LaravelMultiLanguage\Console\GenerateLanguage;
+use Megaads\MultiLanguage\Console\GenerateLanguage;
 use Illuminate\Support\ServiceProvider;
 
 class MultiLanguageServiceProvider extends ServiceProvider {
