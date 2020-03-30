@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Megaads\\Multilanguage\\": "src/"
+            "Megaads\\MultiLanguage\\": "src/"
         }
     }
 }
