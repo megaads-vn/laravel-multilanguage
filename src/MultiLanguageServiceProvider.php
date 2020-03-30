@@ -1,5 +1,5 @@
 <?php 
-namespace Megaads\Multilanguage;
+namespace Megaads\MultiLanguage;
 
 use Megaads\MultiLanguage\Console\GenerateLanguage;
 use Illuminate\Support\ServiceProvider;
@@ -11,11 +11,11 @@ class MultiLanguageServiceProvider extends ServiceProvider {
         $framework = $this->checkFrameWork();
         if ($framework && $framework['key'] == 'laravel/framework' && $framework['version'] >= 54 ) {
             $router = $this->app['router'];
-            $router->aliasMiddleware('auth.lang', \Megaads\Multilanguage\Middleware\LangAuthenticate::class);
+            $router->aliasMiddleware('auth.lang', \Megaads\MultiLanguage\Middleware\LangAuthenticate::class);
             //or
-//            $router->pushMiddlewareToGroup('auth.lang', \Megaads\Multilanguage\Middleware\LangAuthenticate::class);
+//            $router->pushMiddlewareToGroup('auth.lang', \Megaads\MultiLanguage\Middleware\LangAuthenticate::class);
         } else {
-            $router->middleware('auth.lang', 'Megaads\Multilanguage\Middleware\LangAuthenticate');
+            $router->middleware('auth.lang', 'Megaads\MultiLanguage\Middleware\LangAuthenticate');
 
         }
         if ($framework && $framework['key'] == 'laravel/framework' && $framework['version'] >= 52 ) {
