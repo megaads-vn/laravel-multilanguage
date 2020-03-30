@@ -8,8 +8,16 @@ class MultiLanguageServiceProvider extends ServiceProvider {
 
     public function boot(\Illuminate\Routing\Router $router)
     {
-        $router->middleware('LangAuth', 'Megaads\Multilanguage\Middleware\LangAuthenticate');
         $framework = $this->checkFrameWork();
+        if ($framework && $framework['key'] == 'laravel/framework' && $framework['version'] >= 54 ) {
+            $router = $this->app['router'];
+            $router->aliasMiddleware('auth.lang', \Megaads\Multilanguage\Middleware\LangAuthenticate::class);
+            //or
+//            $router->pushMiddlewareToGroup('auth.lang', \Megaads\Multilanguage\Middleware\LangAuthenticate::class);
+        } else {
+            $router->middleware('auth.lang', 'Megaads\Multilanguage\Middleware\LangAuthenticate');
+
+        }
         if ($framework && $framework['key'] == 'laravel/framework' && $framework['version'] >= 52 ) {
             include __DIR__ . '/routes.php';
         } else {  

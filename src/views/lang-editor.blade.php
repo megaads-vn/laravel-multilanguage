@@ -16,7 +16,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.full.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="{{ asset('vendor/multi-language/config.js') }}" type="text/javascript"></script>
     <style>
         .clickable,
         .clickedit {
@@ -110,6 +109,30 @@
     }
 </style>
 <script type="text/javascript">
+    $(document).ready(function () {
+
+        $.fn.select2.defaults.set("theme", "bootstrap");
+
+        $.ajaxSetup({
+            headers: {
+                'Authorization': "Basic " + btoa(USERNAME + ":" + PASSWORD)
+            }
+        });
+
+        $(document).on('click', '.panel-heading span.clickable', function (e) {
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.panel-body').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+            } else {
+                $this.parents('.panel').find('.panel-body').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+            }
+        });
+    });
+
     $('.lang-text').click(function() {
         $('input[type=text]').hide();
         $('span').show();
