@@ -32,8 +32,8 @@
         }
     </style>
     <script>
-        const USERNAME = "{{ Config::get('app.basicAuthentication.username') }}";
-        const PASSWORD = "{{ Config::get('app.basicAuthentication.password') }}";
+        const USERNAME = "{{ Config::get('auth.basicAuthentication.username') }}";
+        const PASSWORD = "{{ Config::get('auth.basicAuthentication.password') }}";
     </script>
 </head>
 

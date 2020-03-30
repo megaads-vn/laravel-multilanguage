@@ -26,7 +26,7 @@ class LangAuthenticate
             $username = $_SERVER['PHP_AUTH_USER'];
             $password = $_SERVER['PHP_AUTH_PW'];
         
-            if ($username == Config::get('app.basicAuthentication.username') && $password == Config::get('app.basicAuthentication.password')){
+            if ($username == Config::get('auth.basicAuthentication.username') && $password == Config::get('auth.basicAuthentication.password')){
                 $loginSuccessful = true;
             }
         }
