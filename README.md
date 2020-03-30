@@ -22,5 +22,9 @@
 ```
 ****
 ```
+Genereta lang file:
+
+php artisan lang:generate
+
 Go http://domain/lang-editor
 ```
