@@ -164,8 +164,10 @@ class GenerateLanguage extends Command
             $folders = $dir.'/'.$ff;
             if(is_dir($folders) && !in_array($ff, $excepDir) ) {
                 $dirFile = $this->listFolderFiles($folders);
-                foreach( $dirFile as $itemFile ) {
-                    $retval[] = $itemFile;
+                if (count($dirFile) > 1) {
+                    foreach( $dirFile as $itemFile ) {
+                        $retval[] = $itemFile;
+                    }
                 }
             }
         }
