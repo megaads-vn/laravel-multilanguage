@@ -2,9 +2,7 @@
 ## Installation:
 **add in file composer.json**
 ```
-"require": {
-	"megaads/laravel-multilanguage": "^1.0.2"
-}
+composer require megaads/laravel-multilanguage
 ```
 ## Usage:
 **Register Provider**
