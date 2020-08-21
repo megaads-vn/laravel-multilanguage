@@ -34,11 +34,46 @@ class MultiLanguageServiceProvider extends ServiceProvider {
         $this->loadViewsFrom(__DIR__.'/views', 'multi-language');
     }
 
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
     public function register() {
+        // $this->commands('command.generate.lang');
+        $this->registerCommands();
+    }
+
+     /**
+     * Register the commands.
+     *
+     * @return void
+     */
+    protected function registerCommands() {
+        $this->registerInstallCommand();
+    }
+
+    /**
+     * Register the 'lang:generate' command.
+     *
+     * @return void
+     */
+    protected function registerInstallCommand() {
         $this->app->singleton('command.generate.lang', function($app) {
             return new GenerateLanguage();
         });
-        $this->commands('command.generate.lang');
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            'command.generate.lang'
+        ];
     }
 
     private function checkFrameWork() {
