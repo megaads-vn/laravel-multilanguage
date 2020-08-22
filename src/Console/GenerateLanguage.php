@@ -104,6 +104,11 @@ class GenerateLanguage extends Command
         }
     }
 
+    /**
+     * Check output file is exists
+     * 
+     * 
+     */
     protected function checkOutputFile($fileName)
     {
         $outFilePath = base_path('resources/lang/' . $fileName);
@@ -117,6 +122,10 @@ class GenerateLanguage extends Command
         return $outFilePath;
     }
 
+    /**
+     * List all files in a directory and subs
+     * 
+     */
     protected function readDirs($path)
     {
         $dirHandle = opendir($path);
@@ -136,6 +145,9 @@ class GenerateLanguage extends Command
         return $allPath;
     }
 
+    /**
+     * 
+     */
     protected function listFolderFiles($dir){
         $retval = [];
         if ( is_file($dir) ) {

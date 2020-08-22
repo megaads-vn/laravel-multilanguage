@@ -31,7 +31,7 @@ class LangAuthenticate
             }
         }
         if ($loginSuccessful){
-            return $next($request);
+            return $next($request); 
         }else{
             return response('Unauthorized.', 401,["WWW-Authenticate"=>"Basic realm='xxxxxxx'"]);
         }

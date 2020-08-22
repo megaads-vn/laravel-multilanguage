@@ -41,7 +41,6 @@
     <div class="container">
         <div class="row" style="margin:15px 0px">
             <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                <center></center>
                 <h5>Multiple languge file editor</h5>
             </div>
         </div>

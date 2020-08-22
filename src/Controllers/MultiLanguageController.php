@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Request;
 
 class MultiLanguageController extends BaseController
 {
+    /**
+     * Show lang editor view and handle submit edited
+     * 
+     */
     public function langEditor() {
         $path = base_path('resources/lang/' . config('app.locale') . '.json');
         $content = file_get_contents($path);
@@ -30,6 +34,10 @@ class MultiLanguageController extends BaseController
         return view('multi-language::lang-editor')->with(compact('objectContent'));
     }
 
+    /**
+     * Delete item function 
+     * 
+     */
     public function deleteItem() {
         $response = [
             'status' => 'fail'
