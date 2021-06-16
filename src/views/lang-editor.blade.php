@@ -108,6 +108,7 @@
     }
 </style>
 <script type="text/javascript">
+    var locale = "<?= isset($locale) ? $locale : 'en' ?>";
     $(document).ready(function () {
 
         $.fn.select2.defaults.set("theme", "bootstrap");
@@ -150,8 +151,9 @@
                 url: "/lang-editor",
                 type: "post",
                 data: {
-                    key: indexValue,
-                    value: textValue
+                    key: JSON.stringify(indexValue),
+                    value: textValue,
+                    locale: locale
                 },
                 success: function(result) {
                     if (result.status == 'successful') {
@@ -172,7 +174,8 @@
                 url: '<?= route('frontend::mutilanguage::delete::item') ?>',
                 type: 'delete',
                 data: {
-                    key: dataKey
+                    key: JSON.stringify(dataKey),
+                    locale: locale
                 },
                 success: function(result) {
                     if (result.status == 'successful') {

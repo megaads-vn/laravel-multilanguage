@@ -18,20 +18,24 @@ class MultiLanguageController extends BaseController
      * 
      */
     public function langEditor() {
-        $path = base_path('resources/lang/' . config('app.locale') . '.json');
+        $input = \Request::all();
+        $locale = config('app.locale');
+        if (array_key_exists('locale', $input)) {
+            $locale = $input['locale'];
+        }
+        $path = base_path('resources/lang/' . $locale . '.json');
         $content = file_get_contents($path);
         $objectContent = json_decode($content, true);
         if ( \Request::isMethod('post') ) {
-            $all = \Request::all();
-            $langKey = $all['key'];
-            $langValue = $all['value'];
+            $langKey = json_decode($input['key']);
+            $langValue = $input['value'];
             $objectContent[$langKey] = $langValue;
             $fp = fopen($path, 'w');
             fwrite($fp, json_encode($objectContent, JSON_UNESCAPED_UNICODE));
             fclose($fp);
             return response()->json(['status' => 'successful', 'data' => $langValue]);
         }
-        return view('multi-language::lang-editor')->with(compact('objectContent'));
+        return view('multi-language::lang-editor')->with(compact('objectContent', 'locale'));
     }
 
     /**
@@ -43,11 +47,16 @@ class MultiLanguageController extends BaseController
             'status' => 'fail'
         ];
         $request = \Request::all();
-        $path = base_path('resources/lang/' . config('app.locale') . '.json');
+
+        $locale = config('app.locale');
+        if (array_key_exists('locale', $request)) {
+            $locale = $request['locale'];
+        }
+        $path = base_path('resources/lang/' . $locale . '.json');
         $content = file_get_contents($path);
         $objectContent = json_decode($content, true);
         if (array_key_exists('key', $request)) {
-            $key = $request['key'];
+            $key = json_decode($request['key']);
             if (isset($objectContent[$key])) {
                 unset($objectContent[$key]);
             }
