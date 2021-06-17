@@ -64,7 +64,7 @@ class GenerateLanguage extends Command
                         $match = ltrim($match,'\'');
                         $match = rtrim($match, '"');
                         $match = rtrim($match, '\'');
-                        $match = preg_replace('/\$(.*?)$/i', '', $match);
+                        $match = preg_replace('/\$[a-zA-Z]+$/i', '', $match);
                         if (!in_array($match, $temp) && $match != '') {
                             $temp[] = $match;
                             $formatedData[] = $match;
