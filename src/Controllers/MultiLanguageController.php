@@ -138,4 +138,11 @@ class MultiLanguageController extends BaseController
         }
         return response()->json($response);
     }
+
+    public function downloadLanguageFile() {
+        $locale = config('app.locale');
+        $path = base_path('resources/lang/' . $locale . '.json');
+        $content = file_get_contents($path);
+        return $content;
+    }
 }

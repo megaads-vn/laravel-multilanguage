@@ -2,6 +2,7 @@
 namespace Megaads\MultiLanguage;
 
 use Megaads\MultiLanguage\Console\GenerateLanguage;
+use Megaads\MultiLanguage\Console\LangDownload;
 use Illuminate\Support\ServiceProvider;
 
 class MultiLanguageServiceProvider extends ServiceProvider {
@@ -39,6 +40,11 @@ class MultiLanguageServiceProvider extends ServiceProvider {
             return new GenerateLanguage();
         });
         $this->commands('command.generate.lang');
+
+        $this->app->singleton('command.download.lang', function($app) {
+            return new LangDownload();
+        });
+        $this->commands('command.download.lang');
     }
 
     private function checkFrameWork() {
