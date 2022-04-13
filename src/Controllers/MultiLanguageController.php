@@ -6,7 +6,7 @@
  * Time: 4:02 PM
  */
 
-namespace Megaads\MultiLanguage\Controller;
+namespace Megaads\MultiLanguage\Controllers;
 
 use File;
 use Response;
