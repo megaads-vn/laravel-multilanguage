@@ -41,7 +41,7 @@ class LangDownload extends Command
         $path = base_path() . '/resources/lang/' . $fileName;
         $options = $this->option();
         if (array_key_exists('site', $options) && $options['site'] != '') {
-            $url = $options['site'];
+            $url = $this->getUrlFromSite($options['site']);
             $response = $this->getDataFromUrl($url);
             $currentData = $this->getCurrentData();
             if ($response) {
@@ -61,10 +61,26 @@ class LangDownload extends Command
         echo 'Done';
     }
 
+    public function getUrlFromSite($site) {
+        $retval = '';
+        $site = trim($site, '\'');
+        if (filter_var($site, FILTER_VALIDATE_URL)) {
+            $retval = $site;
+        } else if (str_contains($site, '.com')){
+            $retval = 'https://' . $site . '/lang-editor/download'; 
+        } else {
+            $retval = 'https://' . $site . '.com/lang-editor/download';
+        }
+        return $retval;
+    }
+
     public function getDataFromUrl($url)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
+        $headers = array("Accept: application/json");
+        curl_setopt($ch, CURLOPT_URL, $url);  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $retval = curl_exec($ch);
         curl_close($ch);
         return $retval;
