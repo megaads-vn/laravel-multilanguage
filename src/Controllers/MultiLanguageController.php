@@ -143,6 +143,7 @@ class MultiLanguageController extends BaseController
         $locale = config('app.locale');
         $path = base_path('resources/lang/' . $locale . '.json');
         $content = file_get_contents($path);
+        header('Content-Type: application/json; charset=utf-8');
         return $content;
     }
 }

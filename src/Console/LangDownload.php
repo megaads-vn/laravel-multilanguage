@@ -11,14 +11,14 @@ class LangDownload extends Command
      *
      * @var string
      */
-    protected $signature = 'lang:download {--site=}';
+    protected $signature = 'lang:download {site}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Get json from {--site} and update at current site';
+    protected $description = 'Get json from {site} and update at current site';
 
     /**
      * Create a new command instance.
@@ -39,9 +39,9 @@ class LangDownload extends Command
     {
         $fileName = config('app.locale') .'.json';
         $path = base_path() . '/resources/lang/' . $fileName;
-        $options = $this->option();
-        if (array_key_exists('site', $options) && $options['site'] != '') {
-            $url = $this->getUrlFromSite($options['site']);
+        $site = $this->argument('site');
+        if (isset($site) && $site != '') {
+            $url = $this->getUrlFromSite($site);
             $response = $this->getDataFromUrl($url);
             $currentData = $this->getCurrentData();
             if ($response) {
@@ -76,7 +76,7 @@ class LangDownload extends Command
 
     public function getDataFromUrl($url)
     {
-        $ch = curl_init();
+        $ch = curl_init($url);
         $headers = array("Accept: application/json");
         curl_setopt($ch, CURLOPT_URL, $url);  
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
@@ -89,11 +89,13 @@ class LangDownload extends Command
     public function getCurrentData() {
         $locale = config('app.locale');
         $path = base_path('resources/lang/' . $locale . '.json');
-        $content = file_get_contents($path);
-        $objectContent = json_decode($content, true);
-        return $objectContent;
+        if (file_exists($path)) {
+            $content = file_get_contents($path);
+            $objectContent = json_decode($content, true);
+            return $objectContent;
+        }
+        return [];
     }
-
 
     protected function writeContentToFile($outFile, $writeData)
     {
