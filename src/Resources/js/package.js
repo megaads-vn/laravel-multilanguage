@@ -126,9 +126,9 @@ $('#add-key-form').submit(function(e) {
     var langKey = $('#language_key').val();
     var langValue = $('#language_value').val();
     var endpoint = 'lang-editor/add-key';
-    var params = {
-        key: JSON.stringify(langKey),
-        value: langValue,
+     var params = {
+        key: JSON.stringify(langKey.trim()),
+        value: langValue.trim(),
         locale: locale
     }
     ajaxRequest(endpoint, params, 'POST',createSuccess);
