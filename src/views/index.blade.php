@@ -90,5 +90,5 @@
     var locale = "<?= isset($locale) ? $locale : 'en' ?>";
     var deleteRoute = "<?= route('frontend::mutilanguage::delete::item') ?>";
 </script>
-<script type="text/javascript" src="/lang-editor/resources/package.js" ></script>
+<script type="text/javascript" src="/lang-editor/resources/package.js?v=202211091500" ></script>
 </html>
