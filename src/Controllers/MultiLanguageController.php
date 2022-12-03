@@ -11,7 +11,7 @@ namespace Megaads\MultiLanguage\Controllers;
 use File;
 use Response;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class MultiLanguageController extends BaseController
 {
@@ -145,5 +145,38 @@ class MultiLanguageController extends BaseController
         $content = file_get_contents($path);
         header('Content-Type: application/json; charset=utf-8');
         return $content;
+    }
+
+    public function export(Request $request) 
+    {
+        $locale = config('app.locale');
+
+        if ($request->input('locale')) {
+            $locale = $request->input('locale');
+        }
+
+        $path = resource_path('lang/' . $locale . '.json');
+    
+        $content = file_get_contents($path);
+
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $locale . '.json"');
+
+        return $content;
+    }
+
+    public function import(Request $request)
+    {
+        $locale = config('app.locale');
+
+        if ($request->input('locale')) {
+            $locale = $request->input('locale');
+        }
+
+        $file = $request->file('content');
+        $file->move(resource_path('lang'), $locale . '.json');
+
+        echo '<meta http-equiv="refresh" content="3;url=' . url()->previous() . '" />';
+        echo "Import successful, Redirecting back in 3s...";
     }
 }

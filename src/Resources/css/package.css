@@ -28,6 +28,9 @@
     right: 50px;
     top: 50px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .add-key-btn>img {

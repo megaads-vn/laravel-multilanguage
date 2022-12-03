@@ -32,8 +32,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="add-key-btn js-add-key-btn">
-                <img src="/lang-editor/resources/add_key.png" alt="Add new key" title="Add new key" />
+            <div class="add-key-btn">
+                <button class="js-add-key-btn btn btn-success" title="Add new key"> <i class="fa fa-plus"></i> </button>
+                <a href="/lang-editor/export?locale=<?= isset($locale) ? $locale : 'en' ?>" class="btn btn-success" title="Export keys"> <i class="fa fa-download"></i> </a>
+                <form action="/lang-editor/import" method="post" enctype="multipart/form-data">
+                    <label class="btn btn-success" title="Import keys" for="fileImport"> <i class="fa fa-upload"></i> </label>
+                    <input type="hidden" name="locale" value="<?= isset($locale) ? $locale : 'en' ?>">
+                    <input type="file" name="content" id="fileImport" style="display: none" onchange="this.form.submit()">
+                </form>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="panel panel-success">
@@ -90,5 +96,5 @@
     var locale = "<?= isset($locale) ? $locale : 'en' ?>";
     var deleteRoute = "<?= route('frontend::mutilanguage::delete::item') ?>";
 </script>
-<script type="text/javascript" src="/lang-editor/resources/package.js?v=202211091500" ></script>
+<script type="text/javascript" src="/lang-editor/resources/package.js" ></script>
 </html>
