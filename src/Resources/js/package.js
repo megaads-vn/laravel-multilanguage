@@ -134,6 +134,12 @@ $('#add-key-form').submit(function(e) {
     ajaxRequest(endpoint, params, 'POST',createSuccess);
 });
 
+$('.js-select-locale').change(function() {
+    var baseUrl = window.location.origin;
+    var lc = $(this).val();
+    window.location = `${baseUrl}/lang-editor?locale=${lc}`;
+});
+
 ajaxRequest = function(endpoint, params, method, callBack, element) {
     if (typeof method == 'undefined') {
         method = 'POST';

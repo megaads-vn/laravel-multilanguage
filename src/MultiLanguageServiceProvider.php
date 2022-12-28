@@ -29,7 +29,7 @@ class MultiLanguageServiceProvider extends ServiceProvider {
             }
         }
         $this->publishes([
-            __DIR__.'/assets' => public_path('vendor/multi-language'),
+            __DIR__.'/Resources/' => public_path('vendor/multi-language'),
         ], 'public');
 
         $this->loadViewsFrom(__DIR__.'/views', 'multi-language');
