@@ -19,6 +19,7 @@ class MultiLanguageController extends BaseController
      * Show lang editor view and handle submit edited
      * 
      */
+
     public function langEditor() {
         $input = \Request::all();
         $locale = config('app.locale');
@@ -37,7 +38,8 @@ class MultiLanguageController extends BaseController
             fclose($fp);
             return response()->json(['status' => 'successful', 'data' => $langValue]);
         }
-        return view('multi-language::index')->with(compact('objectContent', 'locale'));
+        $listLocale = $this->listLanguage();
+        return view('multi-language::index')->with(compact('objectContent', 'locale', 'listLocale'));
     }
 
     /**
@@ -178,5 +180,88 @@ class MultiLanguageController extends BaseController
 
         echo '<meta http-equiv="refresh" content="3;url=' . url()->previous() . '" />';
         echo "Import successful, Redirecting back in 3s...";
+    }
+
+    private function listLanguage() {
+        $retVal = [];
+        $langPath = resource_path('/lang');
+        $listFile = array_diff(scandir($langPath), array('.', '..'));
+        if (count($listFile) > 0) {
+            foreach ($listFile as $item) {
+                $getExtension = explode('.', $item);
+                $ext = end($getExtension);
+                if ($ext == 'json') {
+                    $retVal[] = [
+                        "code" => $getExtension[0],
+                        "text" => $this->mapLocaleToName($getExtension[0])
+                    ];
+                }
+            }
+        }
+        return $retVal;
+    }
+
+    private function mapLocaleToName ($locale) {
+        $retVal = $locale;
+        switch ($locale) {
+            case 'en':
+                    $retVal = 'English';
+                break;
+            case 'de':
+                    $retVal = 'Germany';
+                break;
+            case 'dk':
+                    $retVal = 'Denmark';
+               break;
+            case 'es':
+                    $retVal = 'Spain';
+                break;
+            case 'fi':
+                    $retVal = 'Finland';
+                break;
+            case 'fr':
+                    $retVal = 'French';
+                break;
+            case 'id':
+                    $retVal = 'Indonesia';
+                break;
+            case 'ir':
+                    $retVal = 'Iran';
+                break;
+            case 'it';
+                    $retVal = 'Italy';
+                break;
+            case 'jp':
+                    $retVal = 'Japan';
+                break;
+            case 'kr';
+                    $retVal = 'Korea';
+                break;
+            case 'pl':
+                    $retVal = 'Poland';
+                break;
+            case 'pt':
+                    $retVal= 'Portugal';
+                break;
+            case 'ru':
+                    $retVal = 'Russia';
+                break;
+            case 'se':
+                    $retVal = 'Sweden';
+                break;
+            case 'th';
+                    $retVal = 'Thailand';
+                break;
+            case 'vi';
+                    $retVal = 'Viet Nam';
+                break;
+            case 'ca':
+                    $retVal = 'Canada';
+                break;
+            case 'au':
+                    $retVal = 'Australia';
+                break;
+        }
+        return $retVal;
     }
 }
