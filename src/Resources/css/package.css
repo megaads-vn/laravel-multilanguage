@@ -49,3 +49,11 @@
     color: red;
     display: block;
 }
+
+.lang-value {
+    padding: 0 !important;
+}
+
+.js-lang-editor {
+    height: 50px !important;
+}
