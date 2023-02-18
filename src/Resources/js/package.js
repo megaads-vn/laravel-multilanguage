@@ -25,11 +25,19 @@ $(document).ready(function () {
     $.fn.select2.defaults.set("theme", "bootstrap");
 
     $('.lang-text').click(function() {
-        $('input[type=text]').hide();
+        $('input[type=text]:not(#language_key):not(#language_value)').hide();
         $('span').show();
         $(this).hide();
-        $(this).parent().find('#lang-editor').show();
-        $(this).parent().find('#lang-editor').focus();
+        $(this).parent().find('.js-lang-editor').show();
+        $(this).parent().find('.js-lang-editor').focus();
+    });
+
+    $('.lang-value').click(function() {
+        $('input[type=text]:not(#language_key):not(#language_value)').hide();
+        $('span').show();
+        $(this).find('.lang-text').hide();
+        $(this).find('.js-lang-editor').show();
+        $(this).find('.js-lang-editor').focus();
     });
 
     $("input").on("keypress", function() {
@@ -43,15 +51,14 @@ $(document).ready(function () {
                 url: "/lang-editor",
                 type: "post",
                 data: {
-                    key: JSON.stringify(indexValue),
-                    value: textValue,
+                    key: JSON.stringify(indexValue.trim()),
+                    value: textValue.trim(),
                     locale: locale
                 },
                 success: function(result) {
                     if (result.status == 'successful') {
-                        textInput.val('');
                         parentInput.children('.lang-text').text(result.data);
-                        $('input[type=text]').hide();
+                        $('input[type=text]:not(#language_key):not(#language_value)').hide();
                         $('span').show();
                     }
                 }
@@ -102,7 +109,7 @@ $(document).on('click', '#js-btn-delete', function() {
 $(document).keydown(function(e) {
     var code = e.keyCode || e.which;
     if (code == '27') {
-        $('input[type=text]').hide();
+        $('input[type=text]:not(#language_key):not(#language_value)').hide();
         $('span').show();
     }
 });

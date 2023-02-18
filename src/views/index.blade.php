@@ -11,7 +11,7 @@
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.12/js/select2.min.js" rel="stylesheet" type="text/css" /> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" rel="stylesheet" type="text/css" /> -->
-    <link href="/lang-editor/resources/package.css" rel="stylesheet" type="text/css" />
+    <link href="/lang-editor/resources/package.css?v=2022-12-28" rel="stylesheet" type="text/css" />
     
     <script src="/lang-editor/resources/jquery.min.1.12.4.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
@@ -94,7 +94,7 @@
                                     <td class="vertical-align"><?= $key ?></td>
                                     <td class="text-center vertical-align lang-value" data-value="<?= $key ?>">
                                         <span class="lang-text"><?= $item ?></span>
-                                        <input id="lang-editor" type="text" style="display:none" name="editor" class="form-control" value="<?= $item ?>" />
+                                        <input type="text" style="display: none" name="editor" class="form-control js-lang-editor" value="<?= $item ?>" />
                                     </td>
                                     <td>
                                         <button id="js-btn-delete" class="btn btn-danger" data-key="<?= $key ?>"><i class="fa fa-trash"></i></button>
@@ -120,5 +120,5 @@
     var locale = "<?= isset($locale) ? $locale : 'en' ?>";
     var deleteRoute = "<?= route('frontend::mutilanguage::delete::item') ?>";
 </script>
-<script type="text/javascript" src="/lang-editor/resources/package.js" ></script>
+<script type="text/javascript" src="/lang-editor/resources/package.js?v=2022-12-28" ></script>
 </html>
